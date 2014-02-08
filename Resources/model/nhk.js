@@ -295,10 +295,10 @@
 
     NHKProgram.prototype.list = function(area, service, date, callback) {
       var requestParam;
-      area = _parseArea(area);
-      service = _parseService(service);
-      date = _parseDate(date);
-      requestParam = "list/" + area.id + "/" + service.id + "/" + date.to_s + ".json?key=" + this.apikey;
+      area = this._parseArea(area);
+      service = this._parseService(service);
+      date = this._parseDate(date);
+      requestParam = "list/" + area.id + "/" + service.id + "/" + date + ".json?key=" + this.apikey;
       return this.get(requestParam, function(result) {
         if (result) {
           return callback(result);
@@ -314,7 +314,7 @@
       service = this._parseService(service);
       genre = this._parseGenre(genre);
       date = this._parseDate(date);
-      requestParam = "genre/" + area.id + "/" + service.id + "/" + genre.id + "/" + date.to_s + ".json?key=" + this.apikey;
+      requestParam = "genre/" + area.id + "/" + service.id + "/" + genre.id + "/" + date + ".json?key=" + this.apikey;
       return this.get(requestParam, function(result) {
         if (result) {
           return callback(result);
@@ -328,7 +328,7 @@
       var requestParam;
       area = this._parseArea(area);
       service = this._parseService(service);
-      requestParam = "info/" + area.id + "/" + service.id + "/" + id.to_s + ".json?key=" + this.apikey;
+      requestParam = "info/" + area.id + "/" + service.id + "/" + id + ".json?key=" + this.apikey;
       return this.get(requestParam, function(result) {
         if (result) {
           return callback(result);
@@ -393,7 +393,11 @@
       return result;
     };
 
-    NHKProgram.prototype._parseDate = function(date) {};
+    NHKProgram.prototype._parseDate = function(date) {
+      var moment;
+      moment = require("lib/moment");
+      return moment(date).format("YYYY-MM-DD");
+    };
 
     return NHKProgram;
 

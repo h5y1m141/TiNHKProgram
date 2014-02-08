@@ -118,10 +118,10 @@ class NHKProgram
 
        
   list: (area, service, date,callback) ->
-    area = _parseArea(area)
-    service = _parseService(service)
-    date = _parseDate(date)    
-    requestParam = "list/#{area.id}/#{service.id}/#{date.to_s}.json?key=#{@apikey}"
+    area = @_parseArea(area)
+    service = @_parseService(service)
+    date = @_parseDate(date)    
+    requestParam = "list/#{area.id}/#{service.id}/#{date}.json?key=#{@apikey}"
 
     @get(requestParam,(result) ->
       if result
@@ -136,7 +136,7 @@ class NHKProgram
     service = @_parseService(service)
     genre = @_parseGenre(genre)
     date = @_parseDate(date)    
-    requestParam = "genre/#{area.id}/#{service.id}/#{genre.id}/#{date.to_s}.json?key=#{@apikey}"
+    requestParam = "genre/#{area.id}/#{service.id}/#{genre.id}/#{date}.json?key=#{@apikey}"
     @get(requestParam,(result) ->
       if result
         callback(result)
@@ -154,7 +154,7 @@ class NHKProgram
   info:(area, service, id,callback) ->
     area = @_parseArea(area)
     service = @_parseService(service)
-    requestParam = "info/#{area.id}/#{service.id}/#{id.to_s}.json?key=#{@apikey}"
+    requestParam = "info/#{area.id}/#{service.id}/#{id}.json?key=#{@apikey}"
     @get(requestParam,(result) ->
       if result
         callback(result)
@@ -204,9 +204,10 @@ class NHKProgram
       id:data[0].id
       name:data[0].name
     return result
-    
+
   _parseDate:(date) ->
-    return
+    moment = require("lib/moment")
+    return moment(date).format("YYYY-MM-DD")
     
 module.exports = NHKProgram
 
