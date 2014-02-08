@@ -1,0 +1,15 @@
+<html>
+<body>
+<% 	var message; 
+	if(message) { %>
+	<%= message %>
+<% } %>
+
+<% if(user) {%>
+	<div>Welcome, <%= user.name %>!    <a href="/logout">logout</a></div>
+	<a href="/update">update your info</a>
+<% } else {%>
+	<%- include login %>
+<% } %>
+</body>
+</html>
