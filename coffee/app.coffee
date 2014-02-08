@@ -12,9 +12,6 @@ win = Ti.UI.createWindow
   title:'NHK program'
   backgroundColor:"#fff"
   
-tableView = Ti.UI.createTableView()
-
-win.add tableView
 win.open()   
 
 

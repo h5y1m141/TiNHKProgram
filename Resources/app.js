@@ -1,5 +1,5 @@
 (function() {
-  var NHKProgram, client, config, file, tableView, win;
+  var NHKProgram, client, config, file, win;
 
   NHKProgram = require("model/nhk");
 
@@ -19,10 +19,6 @@
     title: 'NHK program',
     backgroundColor: "#fff"
   });
-
-  tableView = Ti.UI.createTableView();
-
-  win.add(tableView);
 
   win.open();
 
