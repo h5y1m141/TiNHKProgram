@@ -15,5 +15,13 @@ win = Ti.UI.createWindow
 win.open()   
 
 client.list('東京',"ＮＨＫ総合１","2014-02-09",(result) ->
-  Ti.API.info result
+  for program in result.list.g1
+    Ti.API.info program.id + program.title
+)
+
+# みんなのうたの番組詳細取得
+client.info('東京',"ＮＨＫ総合１",'2014020903005',(result) ->
+  
+  Ti.API.info result.list.g1[0].title
+  Ti.API.info result.list.g1[0].subtitle
 )
